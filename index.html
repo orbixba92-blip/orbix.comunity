@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σpsilon Official</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a237e;
+            --secondary: #3949ab;
+            --accent: #00bcd4;
+            --light: #f5f5f5;
+            --dark: #121212;
+            --gray: #757575;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #0097a7;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 4rem 0;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Visi Misi */
+        .vision-mission {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Services */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        /* Home Content */
+        .home-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+        
+        .home-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .home-content {
+                padding: 2rem;
+            }
+        }
+        
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-infinity"></i>
+                <span>Σ</span>psilon Official
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">Tentang Kami</a></li>
+                    <li><a href="#services" class="nav-link">Layanan</a></li>
+                    <li><a href="#vision" class="nav-link">Visi Misi</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Σpsilon Official</h1>
+            <p>Solusi teknologi terdepan untuk keamanan siber dan pengembangan web yang inovatif. Kami hadir untuk membantu bisnis Anda berkembang di era digital dengan layanan yang komprehensif dan profesional.</p>
+            <a href="#services" class="btn">Jelajahi Layanan Kami</a>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="tab-content active">
+            <div class="section-title">
+                <h2>Selamat Datang di Σpsilon</h2>
+            </div>
+            
+            <div class="home-content">
+                <p><strong>Σpsilon Official</strong> adalah perusahaan teknologi yang berfokus pada penyediaan solusi di bidang keamanan siber dan pengembangan perangkat lunak. Dengan tim ahli yang berpengalaman, kami berkomitmen untuk memberikan layanan terbaik kepada klien kami.</p>
+                
+                <p>Didirikan pada tahun 2020, Σpsilon telah berkembang menjadi mitra terpercaya bagi berbagai perusahaan, mulai dari startup hingga korporasi besar. Kami memahami bahwa setiap bisnis memiliki kebutuhan unik, oleh karena itu kami menawarkan solusi yang disesuaikan dengan tujuan dan anggaran Anda.</p>
+                
+                <p>Di Σpsilon, kami tidak hanya sekadar menyelesaikan proyek, tetapi juga membangun hubungan jangka panjang dengan klien kami. Kami percaya bahwa teknologi yang tepat dapat mengubah bisnis dan meningkatkan efisiensi operasional secara signifikan.</p>
+                
+                <p>Dengan fokus pada inovasi, keamanan, dan kualitas, Σpsilon siap membantu Anda menghadapi tantangan digital dan mencapai kesuksesan di era teknologi yang terus berkembang.</p>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="tab-content">
+            <div class="section-title">
+                <h2>Tentang Kami</h2>
+            </div>
+            
+            <div class="home-content">
+                <p><strong>Σpsilon Official</strong> adalah tim profesional yang berdedikasi di bidang teknologi informasi dengan spesialisasi dalam keamanan siber dan pengembangan perangkat lunak. Kami terdiri dari individu-individu berbakat dengan latar belakang yang beragam, yang bersatu untuk menciptakan solusi teknologi yang inovatif dan andal.</p>
+                
+                <p>Visi kami adalah menjadi mitra teknologi terdepan yang mendorong transformasi digital di berbagai sektor industri. Kami berkomitmen untuk terus mengikuti perkembangan teknologi terbaru dan menerapkannya dalam solusi yang kami tawarkan kepada klien.</p>
+                
+                <p>Tim kami memiliki sertifikasi dan pengalaman di berbagai bidang teknologi, termasuk ethical hacking, pengembangan aplikasi web dan mobile, analisis data, serta arsitektur sistem. Dengan pendekatan yang holistik, kami mampu memberikan solusi end-to-end yang memenuhi kebutuhan bisnis Anda.</p>
+                
+                <p>Nilai-nilai kami meliputi integritas, inovasi, kolaborasi, dan komitmen terhadap kualitas. Kami percaya bahwa dengan menerapkan nilai-nilai ini dalam setiap proyek, kami dapat memberikan hasil yang luar biasa dan membangun kepercayaan jangka panjang dengan klien kami.</p>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section id="services" class="tab-content">
+            <div class="section-title">
+                <h2>Layanan Kami</h2>
+            </div>
+            
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cyber Security</h3>
+                    <p>Layanan keamanan siber untuk melindungi sistem dan data bisnis Anda dari ancaman digital.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Programming</h3>
+                    <p>Pengembangan perangkat lunak kustom sesuai dengan kebutuhan spesifik bisnis Anda.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Pembuatan website responsif dan modern dengan teknologi terbaru.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <p>Pengembangan antarmuka pengguna yang menarik, interaktif, dan user-friendly.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend Development</h3>
+                    <p>Pengembangan server, database, dan API untuk mendukung aplikasi Anda.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Pembuatan aplikasi mobile untuk platform iOS dan Android.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Management</h3>
+                    <p>Desain, implementasi, dan optimasi sistem database untuk bisnis Anda.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Layanan migrasi, manajemen, dan optimasi infrastruktur cloud.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Vision & Mission Section -->
+        <section id="vision" class="tab-content">
+            <div class="section-title">
+                <h2>Visi & Misi</h2>
+            </div>
+            
+            <div class="vision-mission">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Visi</h3>
+                    <p>Menjadi perusahaan teknologi terdepan yang memberikan solusi inovatif dan terpercaya di bidang keamanan siber dan pengembangan perangkat lunak, serta menjadi mitra strategis bagi bisnis dalam menghadapi tantangan era digital.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Menyediakan solusi keamanan siber yang komprehensif untuk melindungi aset digital klien.</li>
+                        <li>Mengembangkan perangkat lunak berkualitas tinggi yang meningkatkan efisiensi bisnis.</li>
+                        <li>Memberikan layanan konsultasi teknologi yang membantu klien mencapai tujuan bisnis mereka.</li>
+                        <li>Terus berinovasi dan mengikuti perkembangan teknologi terbaru.</li>
+                        <li>Membangun tim profesional yang kompeten dan berintegritas tinggi.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="tab-content">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+            </div>
+            
+            <div class="home-content">
+                <p>Kami siap membantu Anda dengan solusi teknologi yang tepat untuk bisnis Anda. Jangan ragu untuk menghubungi kami untuk konsultasi gratis atau informasi lebih lanjut tentang layanan kami.</p>
+                          
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Informasi Kontak</h3>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 10px;"></i> Filipina-ID</p>
+                        <p><i class="fas fa-phone" style="color: var(--accent); margin-right: 10px;"></i> +63930 270 7480</p>
+                        <p><i class="fas fa-envelope" style="color: var(--accent); margin-right: 10px;"></i> @epsilon.official.com</p>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Jam Operasional</h3>
+                        <p>Senin - Jumat: 08:00 - 17:00 WIB</p>
+                        <p>Sabtu: 09:00 - 15:00 WIB</p>
+                        <p>Minggu: Tutup</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:@epsilonofficial.com" class="btn"><i class="fas fa-envelope"></i> Kirim Email</a>
+                    <a href="tel:+639302707480" class="btn" style="margin-left: 10px; background-color: var(--success);"><i class="fas fa-phone"></i> Telepon Kami</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-target="home">Home</button>
+            <button class="tab-btn" data-target="about">Tentang Kami</button>
+            <button class="tab-btn" data-target="services">Layanan</button>
+            <button class="tab-btn" data-target="vision">Visi Misi</button>
+            <button class="tab-btn" data-target="contact">Kontak</button>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span>Σ</span>psilon Official
+                    </div>
+                    <p>Solusi teknologi terdepan untuk keamanan siber dan pengembangan web yang inovatif.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Layanan</h3>
+                    <ul>
+                        <li><a href="#services">Cyber Security</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Frontend Development</a></li>
+                        <li><a href="#services">Backend Development</a></li>
+                        <li><a href="#services">Mobile Development</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#vision">Visi Misi</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Σpsilon Official. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Tab navigation functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const target = btn.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+                
+                // Update navigation links
+                updateNavLinks(target);
+                
+                // Close mobile menu if open
+                navMenu.classList.remove('show');
+            });
+        });
+        
+        // Update navigation links based on active tab
+        function updateNavLinks(activeTab) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${activeTab}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Navigation links functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Get target section from href
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Remove active class from all buttons and content
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to corresponding tab button
+                const correspondingBtn = document.querySelector(`.tab-btn[data-target="${targetId}"]`);
+                if (correspondingBtn) {
+                    correspondingBtn.classList.add('active');
+                }
+                
+                // Show corresponding content
+                document.getElementById(targetId).classList.add('active');
+                
+                // Update navigation links
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Close mobile menu if open
+                navMenu.classList.remove('show');
+            });
+        });
+        
+        // Smooth scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#home') {
+                    window.scrollTo({
+                        top: document.querySelector('.hero').offsetTop,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Initialize the page with Home section active
+        document.addEventListener('DOMContentLoaded', () => {
+            // Default active tab is home
+            updateNavLinks('home');
+        });
+    </script>
+</body>
+</html>
